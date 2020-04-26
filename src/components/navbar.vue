@@ -7,19 +7,19 @@
       <section class="navbar-section">
         <a
           class="btn btn-link tooltip tooltip-bottom"
-          data-tooltip="复制元件 Ctrl + C"
+          data-tooltip="Copy Component Ctrl + C"
           @click="copyWidget">
           <vpd-icon name="copy" /> {{ $t('data.actions.copy') }}
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
-          data-tooltip="删除元件 Delete"
+          data-tooltip="Delete Component (Delete)"
           @click="dele">
           <vpd-icon name="trash-2" /> {{ $t('data.actions.delete') }}
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
-          data-tooltip="保存 Ctrl + S"
+          data-tooltip="Save (Ctrl + S)"
           @click="save"><vpd-icon name="save" /> {{ $t('data.actions.save') }}</a>
         <select
           v-model="$i18n.locale"

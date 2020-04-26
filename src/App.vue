@@ -45,12 +45,12 @@ export default {
   name: 'VuePageDesigner',
   i18n: i18n,
   components: {
-    navbar, // 顶部导航栏
-    toolbar, // 左侧菜单栏
-    panel, // 右侧参数面板
-    viewport, // 页面画布
-    [toast.name]: toast, // 提示组件
-    [uploader.name]: uploader, // 上传组件
+    navbar, // Top navigation bar
+    toolbar, // Left menu bar
+    panel, // Right parameter panel
+    viewport, // Page canvas
+    [toast.name]: toast, // Prompt component
+    [uploader.name]: uploader, // Upload component
     [slider.name]: slider
   },
   mixins: [vpd],
@@ -71,11 +71,11 @@ export default {
     loadSprite('//unpkg.com/vue-page-designer@0.7.1/dist/icons.svg', 'svgspriteit')
   },
   created () {
-    // 注册 widgets
+    // registered widgets
     Vue.use(widget, {
       widgets: this.widgets
     })
-    // 初始化已有数据
+    // Initialize existing data
     if (this.value) {
       this.$vpd.replaceState(this.value)
     }
@@ -84,7 +84,7 @@ export default {
     })
   },
   mounted () {
-    // 初始化选中元件（将页面作为初始选中元件）
+    // Initialize the selected component (use the page as the initial selected component)
     this.$vpd.commit('initActive')
   },
 

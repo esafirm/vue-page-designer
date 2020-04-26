@@ -6,7 +6,7 @@ export default {
       }, true)
     } else {
       commit('addWidget', { item })
-      // 设置选中
+      // set selected
       commit('select', {
         uuid: state.widgets[state.widgets.length - 1].uuid
       })

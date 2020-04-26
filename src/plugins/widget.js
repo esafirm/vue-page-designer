@@ -1,4 +1,4 @@
-// 默认 widgets
+// default widgets
 import defaultWidgets from 'vue-page-designer-widgets'
 import vpd from '../mixins/vpd'
 

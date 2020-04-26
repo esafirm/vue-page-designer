@@ -2,7 +2,7 @@
   <div
     v-if="!activeElement.page && tab === 1"
     class="panel-wrap">
-    <!-- 公共属性 -->
+    <!-- Public Properties -->
     <div class="panel-row">
       <vpd-icon name="layers" />
       <div class="panel-label">{{ $t('data.levels') }}</div>
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <!-- 组件样式 -->
+    <!-- Component Style -->
     <component
       v-for="(item, i) in widgetStyle"
       v-if="item.type === activeElement.type"
@@ -71,7 +71,7 @@
       :key="i"
       :active-element="activeElement" />
 
-    <!-- 添加到容器 -->
+    <!-- Add to Container -->
     <div v-if="activeElement.isChild">
       <hr>
       <div class="panel-row">

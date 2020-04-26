@@ -1,7 +1,7 @@
 const generate = require('nanoid/generate')
 
 export default {
-  // 选中元件与取消选中
+  // Selected components and unselected
   select (state, payload) {
     state.uuid = payload.uuid
     if (payload.uuid === -1) {
@@ -14,7 +14,7 @@ export default {
     }
   },
 
-  // 设置 mousemove 操作的初始值
+  // Set the initial value of the mousemove operation
   initmove (state, payload) {
     state.startX = payload.startX
     state.startY = payload.startY
@@ -23,12 +23,12 @@ export default {
     state.moving = true
   },
 
-  // 元件移动结束
+  // End of component movement
   stopmove (state) {
     state.moving = false
   },
 
-  // 移动元件
+  // Moving element
   move (state, payload) {
     var target = state.activeElement
     var dx = payload.x - state.startX
@@ -40,7 +40,7 @@ export default {
     target.top = top > 0 ? top : 0
   },
 
-  // 调整元件尺寸
+  // Adjust component size
   resize (state, payload) {
     var dx = payload.x - state.startX
     var dy = payload.y - state.startY
@@ -74,20 +74,20 @@ export default {
     }
   },
 
-  // 复制元件
+  // Copy Component
   copy (state, payload) {
     if (state.type !== 'page') {
       var copy = Object.assign({}, state.activeElement, {top: state.top, uuid: generate('1234567890abcdef', 10)})
 
-      // 由于容器的名称必须是唯一的，故复制容器需作处理
+      // Since the name of the container must be unique, copying the container requires processing
       if (state.activeElement.isContainer) {
         var name = state.activeElement.name
         if (name) {
-          // 设置容器副本的名称
+          // Set the name of the container copy
           var copyName = name.split('-')[0] + '-' + state.counter
           copy.name = copyName
 
-          // 复制容器内的图片和文本
+          // Copy pictures and text in the container
           for (var i = 0, len = state.widgets.length; i < len; i++) {
             if (state.widgets[i].belong === name) {
               state.widgets.push(
@@ -104,27 +104,27 @@ export default {
     }
   },
 
-  // 更新元件初始 top 值
+  // Update the initial top value of the component
   updateSrollTop (state, top) {
     state.top = top
   },
 
-  // 页面缩放
+  // Page zoom
   zoom (state, val) {
     state.zoom = val
   },
 
-  // 初始化选中对象
+  // Initialize the selected object
   initActive (state) {
     state.activeElement = state.page
   },
 
-  // 删除选中元件
+  // Delete selected components
   delete (state) {
     var type = state.type
     if (type === 'page') return
 
-    // 如果删除的是容器，须将内部元件一并删除
+    // If the container is deleted, the internal components must be combined
     if (state.activeElement.isContainer) {
       var name = state.activeElement.name
 
@@ -135,16 +135,16 @@ export default {
       }
     }
 
-    // 删除元件
+    // Delete component
     state.widgets.splice(state.index, 1)
 
-    // 重置 activeElement
+    // Reset activeElement
     state.activeElement = state.page
     // state.type = 'page'
     state.uuid = -1
   },
 
-  // 添加组件
+  // Add components
   addWidget (state, { data: data = null, item }) {
     let def = { top: state.top, uuid: generate('1234567890abcdef', 10) }
     let setting = JSON.parse(JSON.stringify(item.setting))
@@ -162,13 +162,13 @@ export default {
     }
   },
 
-  // 替换图片
+  // Replace picture
   replaceImage (state, payload) {
     state.activeElement.width = payload[0].width
     state.activeElement.url = payload[0].url
   },
 
-  // 添加容器背景图
+  // Add container background image
   addContainerBackPic (state, payload) {
     state.activeElement.backPic = payload[0].url
     state.activeElement.backPicUrl = payload[0].src
@@ -176,13 +176,13 @@ export default {
     state.activeElement.height = payload[0].height
   },
 
-  // 添加背景图
+  // Add background image
   addBackPic (state, payload) {
     state.activeElement.backPic = payload[0].url
     state.activeElement.backPicUrl = payload[0].src
   },
 
-  // 添加动画
+  // Add animation
   addAnimation (state) {
     state.animation.push({
       name: '',
@@ -201,7 +201,7 @@ export default {
     })
   },
 
-  // 为动画添加 keyframe
+  // Add keyframe for animation
   addkeyframe (state, name) {
     state.animation.map(val => {
       if (val.name === name) {
@@ -213,12 +213,11 @@ export default {
     })
   },
 
-  // 动画的播放与停止
+  // Animation play and stop
   setAnimation (state, status) {
     state.playState = status
   },
 
-  // 更新数据
   updateData (state, {uuid, key, value}) {
     let widget = state.widgets.find(w => w.uuid === uuid)
     widget[key] = value
