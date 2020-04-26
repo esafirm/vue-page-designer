@@ -14,17 +14,19 @@
     }"
     contenteditable="true"
     @blur="(e) => updateText(e, val.uuid)"
-    v-html="val.text"/>
+    v-html="val.text"
+  />
 </template>
 
 <script>
-import stylec from './style.vue'
-const WIDGET_NAME = 'braid-button'
+import stylec from './style.vue';
+const WIDGET_NAME = 'braid-button';
 
 export default {
   name: WIDGET_NAME,
-  icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>',
-  title: '按钮',
+  icon:
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>',
+  title: 'Button',
   panel: stylec,
   setting: {
     type: WIDGET_NAME,
@@ -44,23 +46,23 @@ export default {
     backPic: '',
     backPicUrl: '',
     color: '#ffffff',
-    text: '按钮',
+    text: 'Button',
     belong: 'page',
     animationName: ''
   },
   props: ['h', 'val', 'playState'],
 
   methods: {
-    updateText (e, uuid) {
-      let text = e.target.innerHTML
+    updateText(e, uuid) {
+      let text = e.target.innerHTML;
       this.$vpd.commit('updateData', {
         uuid: uuid,
         key: 'text',
         value: text
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>
