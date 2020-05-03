@@ -54,12 +54,13 @@ export default {
     }
   },
   methods: {
-    // 添加组件
+    // Add components
     addWidget (e, item) {
       this.$vpd.dispatch('addWidget', item)
     },
 
-    // 为确保添加的元件出现在可视区内，用画布向上滚动距离作为元件初始 top 值
+    // To ensure that the added component appears in the visible area,
+    // use the canvas to scroll up as the initial top value of the component
     updateSrollTop () {
       var top = document.getElementById('viewport').scrollTop / this.zoom * 100
       this.$vpd.commit('updateSrollTop', top)
