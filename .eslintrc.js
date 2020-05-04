@@ -9,6 +9,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     'vue/valid-template-root': 'off',
     'vue/require-default-prop': 'off',
-    'vue/require-prop-types': 'off'
+    'vue/require-prop-types': 'off',
+    'vue/max-attributes-per-line': 'off'
   }
 };
